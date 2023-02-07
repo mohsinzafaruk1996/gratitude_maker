@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Things I am grateful for</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #generate-button {
+      padding: 10px 20px;
+      background-color: lightblue;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: lightblue;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    #yes-button {
+      padding: 10px 20px;
+      background-color: lightblue;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    #result, #result_test {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    #selected-items {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    #selected-items li {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    #selection {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    button {
+margin-left:10px;
+}
+  </style>
+</head>
+<body>
+<h1>Gratitude List Maker</h1>
+<br>
+<br>
+<br>
+<br>
+  <button id="generate-button">Gratitude Random Item</button>
+    <div class="buttons">
+    <button class="button" id="yes-button" style="display: none;">Yes</button>
+    <button class="button" id="no-button" style="display: none;">No</button>
+  </div>
+  <div id="result"></div>
+  <div id="result_test">Selected Item List: </div>
+  <ul id="selected-items"></ul>
+
+</body>
+<script>
+  var items = [  "family",  "friends",  "health",  "home",  "job",  "education",  "financial stability",  "freedom",  "opportunities",  "nature",  "love",  "kindness of others",  "inner peace",  "hobbies",  "abilities",  "good memories",  "sunrise and sunset",  "music",  "art",  "food",  "warmth",  "laughter",  "religion or spirituality",  "personal growth",  "kids or pets",  "simple pleasures",  "technology",  "community"];
+  document.getElementById("generate-button").addEventListener("click", function() {
+    if (items.length === 0) {
+      document.getElementById("result").innerHTML = "All items have been selected.";
+      return;
+    }
+    var randomIndex = Math.floor(Math.random() * items.length);
+    var randomItem = items[randomIndex];
+    document.getElementById("result").innerHTML =randomItem;
+
+    var selectedItemsList = document.getElementById("selected-items");
+    var addButton = document.createElement("button");
+    addButton.innerHTML = "Add to selected items";
+    addButton.style.marginTop = "10px";
+    addButton.addEventListener("click", function() {
+      items.splice(randomIndex, 1);
+      var selectedItem = document.createElement("LI");
+      var selectedItemText = document.createTextNode(randomItem);
+      selectedItem.appendChild(selectedItemText);
+      selectedItemsList.appendChild(selectedItem);
+      document.getElementById("result").innerHTML = "Select More Above";
+      addButton.remove();
+    });
+    document.getElementById("result").appendChild(addButton);
+  });
+</script>
+</html>
